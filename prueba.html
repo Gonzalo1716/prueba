@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de Tiros</title>
+    <style>
+        #game-container {
+            width: 400px;
+            height: 200px;
+            background-color: lightblue;
+            position: relative;
+        }
+
+        #target {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Tiros</h1>
+    <p>Haz clic en el objetivo para disparar.</p>
+    <p>Puntuación: <span id="score">0</span></p>
+    <div id="game-container">
+        <div id="target"></div>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+        const scoreElement = document.getElementById("score");
+
+        let score = 0;
+
+        target.addEventListener("click", () => {
+            score++;
+            scoreElement.textContent = score;
+            moveTargetRandomly();
+        });
+
+        function moveTargetRandomly() {
+            const maxWidth = 350; // Ancho máximo del contenedor del juego
+            const maxHeight = 150; // Alto máximo del contenedor del juego
+
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            target.style.left = randomX + "px";
+            target.style.top = randomY + "px";
+        }
+
+        // Inicializar la posición del objetivo
+        moveTargetRandomly();
+    </script>
+</body>
+</html>
